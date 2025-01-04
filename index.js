@@ -5,6 +5,3 @@
 //         data asynchronously over the web.
 //         fetch(URL, {options}) 
 
-fetchData();
-
-async function 
