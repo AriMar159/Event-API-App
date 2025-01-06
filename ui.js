@@ -1,89 +1,53 @@
-import { EventBrite } from "./ticketmaster.js";
-
 export class UI {
     constructor(eventbrite) {
-        // App initialization
-       this.init(eventbrite);
+        this.init();
+        this.result = document.getElementById("results");
     }
 
-    // Method when the app starts
-    async init (eventbrite) {
-        // Display categories in <select>
-       await this.printCategories(eventbrite);
-
-        // Select the results container
-        this.result = document.getElementById('result');
+    init() {
+        console.log("UI Initialized");
     }
 
-    // Display events from the API
+    // Display events in the results section
     displayEvents(events) {
-        // Build a template
-        let HTMLTemplate = '';
+        let HTMLTemplate = "";
 
-        // Loop through events and print the result
-        events.forEach(eventInfo => {
+        events.forEach(event => {
+            const eventName = event.name || "No Event Name Available";
+            const eventDate = event.dates?.start?.localDate || "No Date Available";
+            const eventTime = event.dates?.start?.localTime || "No Time Available";
+            const eventImage = event.images?.[0]?.url || "https://via.placeholder.com/150";
+            const eventUrl = event.url || "#";
+
             HTMLTemplate += `
-            <div class="col-md-4 mt-4"> 
-                <div class="card">
-                    <img class="img-fluid mb-2" src="${eventInfo.logo !== null ? eventInfo.logo.url : 'https://via.placeholder.com/150'}" alt="Event Image">
-                    <div class="card-body">
-                        <h2 class="text-center card-title">${eventInfo.name.text}</h2>
-                        <p class="lead text-info">Event Information:</p>
-                        <p>${eventInfo.description.text ? eventInfo.description.text.substring(0, 200) : 'No description available.'}...</p>
-                        <span class="badge badge-primary">Capacity: ${eventInfo.capacity || 'Not available'}</span>
-                        <span class="badge badge-secondary">Date & Time: ${eventInfo.start.local}</span>
-                        <a href="${eventInfo.url}" target="_blank" class="btn btn-primary btn-block mt-4">Get Tickets</a>
-                    </div>
-                </div>
-            </div>`;
+            <div class="event">
+                <img src="${eventImage}" alt="Event Image" style="width:100%; max-width:300px;">
+                <h2>${eventName}</h2>
+                <p>Date: ${eventDate}</p>
+                <p>Time: ${eventTime}</p>
+                <a href="${eventUrl}" target="_blank">View Details</a>
+            </div>
+            <hr>`;
         });
 
-        // Insert the template into the results container
         this.result.innerHTML = HTMLTemplate;
-    }
-
-    // Print categories in the <select>
-    async printCategories(eventbrite) {
-        await eventbrite.getCategoriesAPI()
-            .then(categories => {
-                const categoriesList = categories.categories; // Update based on actual API response structure
-                const categoriesSelect = document.querySelector('#category');
-                // Insert categories into <select>
-                categoriesList.forEach(category => {
-                    // Create the option element
-                    const option = document.createElement('option');
-                    option.value = category.id;
-                    option.textContent = category.name;
-                    categoriesSelect.appendChild(option);
-                });
-            })
-            .catch(error => console.log('Error fetching categories:', error));
     }
 
     // Display a message
     printMessage(message, className) {
         // Create a div
-        const div = document.createElement('div');
+        const div = document.createElement("div");
         div.className = className;
-        // Add the text
         div.appendChild(document.createTextNode(message));
 
-        // Insert into the HTML
-        const searchDiv = document.querySelector('#search-events');
-        searchDiv.appendChild(div);
+        // Insert into the DOM
+        const container = document.querySelector(".container");
+        container.insertBefore(div, this.result);
 
-        // Remove the alert after 3 seconds
+        // Remove the message after 3 seconds
         setTimeout(() => {
-            this.removeMessage();
+            const alert = document.querySelector(`.${className}`);
+            if (alert) alert.remove();
         }, 3000);
     }
-
-    // Remove the message
-    removeMessage() {
-        const alert = document.querySelector('.alert');
-        if (alert) {
-            alert.remove();
-        }
-    }
 }
-

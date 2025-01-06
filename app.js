@@ -1,44 +1,33 @@
 import { EventBrite } from "./ticketmaster.js";
 import { UI } from "./ui.js";
 
-//Get references to DOM elements
-const searchButton = document.getElementById('submitBtn');
-const eventNameInput = document.getElementById('event-name');
-const categoryInput = document.getElementById('category');
+// Initialize EventBrite and UI
+const eventbrite = new EventBrite();
+const ui = new UI(eventbrite);
 
-searchButton.addEventListener('click', async () => {
-    const eventName = eventNameInput.value.trim();
-    const category = categoryInput.value.trim();
-    const eventbrite = new EventBrite();
-    const ui = new UI(eventbrite);
-    //Add click event listener to the button
+// Event listener for search button
+document.getElementById("searchBtn").addEventListener("click", async () => {
+    const eventName = document.getElementById("event-name").value.trim();
+    const city = document.getElementById("city").value.trim();
 
+    // Check if inputs are provided
+    if (!eventName && !city) {
+        ui.printMessage("Please enter an event name or city", "alert alert-danger text-center");
+        return;
+    }
 
-    //Call event logic
-    if (eventName !== '') {
+    try {
+        // Query the Ticketmaster API
+        const { events } = await eventbrite.queryAPI(eventName, city);
 
-    //Query Event Brite API
-        eventbrite.queryAPI(eventName, category)
-            .then (events => {
-                    //Check for events
-                const eventList = events.events.events;
-                if (eventList.length > 0) {
-                    //Print the events
-                    //ui.displayEvents(eventsList);
-
-                } else {
-                        //There are no events, print a message
-                   // ui.printMessage('No Results Found', 'text-center alert alert-danger mt-4');  
-                }         
-            })
-            .catch(error => {
-
-                console.error('Error querying Eventbrite API:', error);
-               // ui.printMessage('Error fetching events. Please try again.', 'text-center alert')
-            })
-    } else {
-       
-            //Print a message
-      //await ui.printMessage('Add an Event or City',  'text-center alert alert-danger mt-4');
+        // Check for events and display
+        if (events.length > 0) {
+            ui.displayEvents(events);
+        } else {
+            ui.printMessage("No events found. Try another search.", "alert alert-warning text-center");
+        }
+    } catch (error) {
+        console.error("Error fetching events:", error);
+        ui.printMessage("Error fetching events. Try again later.", "alert alert-danger text-center");
     }
 });

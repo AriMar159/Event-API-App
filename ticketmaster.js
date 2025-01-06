@@ -1,33 +1,30 @@
-// const { env } = require('node:process')
-
 export class EventBrite {
-//Constructor when instantiate
     constructor() {
-        this.ticketmasterApiKey = 'hfBHdQuTwelptWFArSc1OwFGDLhmOmes';
+        this.apiKey = "hfBHdQuTwelptWFArSc1OwFGDLhmOmes"; // Replace with your Ticketmaster API key
     }
 
-//Get the Events for API
-    async queryAPI(eventName, category) {
-        const eventResponse = await fetch (`https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=${this.ticketmasterApiKey}`);
+    // Fetch events based on event name and city
+    async queryAPI(eventName, city) {
+        try {
+            const queryParams = new URLSearchParams({
+                apikey: this.apiKey,
+                keyword: eventName || "",
+                city: city || "",
+            });
 
-        //Wait for response and return as json
+            const url = `https://app.ticketmaster.com/discovery/v2/events.json?${queryParams}`;
+            const response = await fetch(url);
 
-        const events = await eventResponse.json();
+            if (!response.ok) {
+                throw new Error(`Failed to fetch events: ${response.status}`);
+            }
 
-        return {
-            events
+            const data = await response.json();
+            const events = data._embedded?.events || [];
+            return { events };
+        } catch (error) {
+            console.error("Error in queryAPI:", error);
+            throw error;
         }
-    }
-
-    //Get catergories from API
-    async getCategoriesAPI() {
-        //Query the API
-        const categoriesResponse = await fetch(`https://app.ticketmaster.com/discovery/v2/classifications.json?apikey=${this.ticketmasterApiKey}`)
-       .then(response => console.log(response.body))
-       .catch(error => console.error(error));
-       
-        //Wait for response and return as JSON
-        const categories = await categoriesResponse.json();
-        return categories;
     }
 }
