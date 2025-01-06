@@ -3,13 +3,12 @@
 export class EventBrite {
 //Constructor when instantiate
     constructor() {
-        this.auth_token = 'ITXKB4PKNMDESWD2OKA6';
-        this.orderby = 'date';
+        this.ticketmasterApiKey = 'hfBHdQuTwelptWFArSc1OwFGDLhmOmes';
     }
 
 //Get the Events for API
     async queryAPI(eventName, category) {
-        const eventResponse = await fetch (`https://www.eventbriteapi.com/v3/events/search/?q=${eventName}&sort_by=${this.orderby}&categories=${category}&token=${this.auth_token}`);
+        const eventResponse = await fetch (`https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=${this.ticketmasterApiKey}`);
 
         //Wait for response and return as json
 
@@ -20,10 +19,10 @@ export class EventBrite {
         }
     }
 
-    //Get categories from API
+    //Get catergories from API
     async getCategoriesAPI() {
         //Query the API
-        const categoriesResponse = await fetch(`https://www.eventbriteapi.com/v3/categories/?token=${this.auth_token}`)
+        const categoriesResponse = await fetch(`https://app.ticketmaster.com/discovery/v2/classifications.json?apikey=${this.ticketmasterApiKey}`)
        .then(response => console.log(response))
        .catch(error => console.error(error));
        

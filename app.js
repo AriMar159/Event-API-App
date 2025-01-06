@@ -1,15 +1,16 @@
 import { EventBrite } from "./ticketmaster.js";
+import { UI } from "./ui.js";
 
 //Get references to DOM elements
 const searchButton = document.getElementById('submitBtn');
 const eventNameInput = document.getElementById('event-name');
 const categoryInput = document.getElementById('category');
 
-searchButton.addEventListener('click', () => {
+searchButton.addEventListener('click', async () => {
     const eventName = eventNameInput.value.trim();
     const category = categoryInput.value.trim();
     const eventbrite = new EventBrite();
-
+    const ui = new UI(eventbrite);
     //Add click event listener to the button
 
 
@@ -35,7 +36,8 @@ searchButton.addEventListener('click', () => {
                 ui.printMessage('Error fetching events. Please try again.', 'text-center alert')
             })
     } else {
+       
             //Print a message
-        ui.printMessage('Add an Event or City',  'text-center alert alert-danger mt-4');
+      await  ui.printMessage('Add an Event or City',  'text-center alert alert-danger mt-4');
     }
 });

@@ -1,13 +1,15 @@
-class UI {
-    constructor() {
+import { EventBrite } from "./ticketmaster.js";
+
+export class UI {
+    constructor(eventbrite) {
         // App initialization
-        this.init();
+       this.init(eventbrite);
     }
 
     // Method when the app starts
-    init() {
+    async init (eventbrite) {
         // Display categories in <select>
-        this.printCategories();
+       await this.printCategories(eventbrite);
 
         // Select the results container
         this.result = document.getElementById('result');
@@ -41,8 +43,8 @@ class UI {
     }
 
     // Print categories in the <select>
-    printCategories() {
-        eventbrite.getCategoriesAPI()
+    async printCategories(eventbrite) {
+        await eventbrite.getCategoriesAPI()
             .then(categories => {
                 const categoriesList = categories.categories; // Update based on actual API response structure
                 const categoriesSelect = document.querySelector('#category');
