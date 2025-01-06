@@ -1,0 +1,39 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    height: 100vh;
+    background-color: white;
+}
+
+.container {
+    text-align: center;
+    background: black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px blanchedalmond;
+}
+
+input {
+    margin: 5px;
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button{
+    padding: 10px 20px;
+    background-color: rgb(20, 107, 136);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#results {
+    margin-top: 20px;
+}

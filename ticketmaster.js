@@ -23,7 +23,7 @@ export class EventBrite {
     async getCategoriesAPI() {
         //Query the API
         const categoriesResponse = await fetch(`https://app.ticketmaster.com/discovery/v2/classifications.json?apikey=${this.ticketmasterApiKey}`)
-       .then(response => console.log(response))
+       .then(response => console.log(response.body))
        .catch(error => console.error(error));
        
         //Wait for response and return as JSON

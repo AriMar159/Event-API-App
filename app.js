@@ -16,6 +16,7 @@ searchButton.addEventListener('click', async () => {
 
     //Call event logic
     if (eventName !== '') {
+
     //Query Event Brite API
         eventbrite.queryAPI(eventName, category)
             .then (events => {
@@ -23,21 +24,21 @@ searchButton.addEventListener('click', async () => {
                 const eventList = events.events.events;
                 if (eventList.length > 0) {
                     //Print the events
-                    ui.displayEvents(eventsList);
+                    //ui.displayEvents(eventsList);
 
                 } else {
                         //There are no events, print a message
-                    ui.printMessage('No Results Found', 'text-center alert alert-danger mt-4');  
+                   // ui.printMessage('No Results Found', 'text-center alert alert-danger mt-4');  
                 }         
             })
             .catch(error => {
 
                 console.error('Error querying Eventbrite API:', error);
-                ui.printMessage('Error fetching events. Please try again.', 'text-center alert')
+               // ui.printMessage('Error fetching events. Please try again.', 'text-center alert')
             })
     } else {
        
             //Print a message
-      await  ui.printMessage('Add an Event or City',  'text-center alert alert-danger mt-4');
+      //await ui.printMessage('Add an Event or City',  'text-center alert alert-danger mt-4');
     }
 });
