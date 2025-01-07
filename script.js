@@ -93,7 +93,7 @@ function displayEvents(events) {
     });
 }
 
-// Initial population of the classification dropdown
+// Initial classification dropdown
 fetchClassifications();document.getElementById("searchBtn").addEventListener("click", function() {
     const city = document.getElementById("city").value;
     const classification = document.getElementById("classification").value;

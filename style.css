@@ -1,18 +1,48 @@
-/* Reset some default browser styles */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+img{
+    width: 45%;
+    max-width: 300px;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 100px;
+}
+
 /* Body and container styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.wrapper {
+    height: 100vh;
+    width: 100%;
+}
+
+@media (min-width:768px){
+.wrapper{
+    height: 50rem;
+    width: 25rem;
+    border-radius: 40px;
+    border: 10px solid black;
+}
+}
+
+.screenbackdrop {
+    width:0%;
+    height: 25rem;
+    border-radius: 50% 0 50% 0;
+    background-color: red;
 }
 
 .container {
@@ -23,6 +53,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: center;
+    margin-top: 8px;
 }
 
 h1 {
@@ -31,8 +62,8 @@ h1 {
     color: #333;
 }
 
-/* Styling for input fields and select dropdown */
-input[type="text"], select {
+/* input and select dropdown */
+input, select {
     padding: 10px;
     width: 100%;
     max-width: 300px;
@@ -61,7 +92,7 @@ button:focus {
     outline: none;
 }
 
-/* Event results section */
+/* Event results */
 #events {
     margin-top: 20px;
 }
@@ -107,22 +138,4 @@ button:focus {
     margin-bottom: 10px;
 }
 
-/* For smaller screens */
-@media (max-width: 600px) {
-    .container {
-        padding: 15px;
-    }
 
-    input[type="text"], select, button {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .event {
-        padding: 12px;
-    }
-
-    .event h2 {
-        font-size: 1.2em;
-    }
-}
