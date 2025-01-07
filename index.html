@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Event Finder</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-<div class="container">
-    <h1>Find Events Near You</h1>
-    <input type="text" id="event-name" placeholder="Event Name">
-    <button id="searchBtn">Search</button><br><br>
-    <input type="text" id="city" placeholder="City">
-    <button id="searchBtn">Search</button>
-    <div id=" results"></div>
-</div>
-<script type="module" src="./main.js"></script>
+    <div class="container">
+        <h1>Find Events Near You</h1>
 
-</style>
+        <!-- Search by City and Category -->
+        <div class="search-panel">
+            <div>
+                <input type="text" id="city" placeholder="City">
+                <select id="classification">
+                    <!-- Classification options will be populated here -->
+                </select>
+                <button id="searchBtn">Search</button>
+            </div>
+            
+        </div>
 
+        <!-- Events List -->
+        <div id="events">
+            <h2>Upcoming Events:</h2>
+            <!-- Event items will be appended here dynamically -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
