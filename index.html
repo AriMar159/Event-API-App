@@ -3,21 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event API Project</title>
+    <title>Event Finder</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <div class="navbar">
-            <a class="logo"index.html><b>EVENTHUB</a>
-            <div class="search-container">
-                <input type="text" placeholder="Search events" id="search-input">
-                <button id="search-button">Search</button>
-                
-            </div>
-        </div>
-    </nav>
+    <header> <b>EVENTHUB</header>
+<div class="container">
+    <h1>Find Events Near You</h1>
+    <input type="text" id="city" placeholder="City">
+    <select id="classification">
+    <!-- Classification options will be populated here -->
+</select>
+        <button id="searchBtn">Search</button>
+    <div id=" results"></div>
+    <div id="events" class="events-container"></div>
 
+  <!-- Events List -->
+  <div id="events">
+    <h2>Upcoming Events:</h2>
+    <!-- Event items will be appended here dynamically -->
+</div>
+</div>
+</div>
+<script src="./main.js"></script>
+ 
+        </div>
+
+      
     <script src="script.js"></script>
 </body>
+</html>
 </html>
