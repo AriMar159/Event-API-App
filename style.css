@@ -6,24 +6,23 @@
     box-sizing: border-box;
 }
 header {
-    background-color: teal;
+    background-color: rgb(130, 60, 221);
     color: white;
     padding: 10px 0;
-    align-self: center;
+    align-self:flex-start;
     margin-bottom: 90px;
     margin-top: -300px;
-    width: 100%;
-    height: 80px;
+    margin-left: -300px;    
+    width: 300%;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items:;
     text-indent: 20px
     ;
 }
 /* Body and container styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
     display: inline-block;
     justify-content: center;
     align-items:center ;
@@ -31,7 +30,8 @@ body {
     margin-top: 300px;
     margin-left: 300px;
     height: 100vh;
-    background-color: white;
+    background-image: url('');
+    ;
   
 }
 
@@ -57,7 +57,7 @@ h1 {
     color: #333;
 }
 /* Styling for input fields and select dropdown */
-input[type="text"], select {
+input, select {
     padding: 10px;
     width: 80%;
     width: 100%;
@@ -130,19 +130,53 @@ button:focus {
     height: auto;
     margin-bottom: 10px;
 }
-/* For smaller screens */
-@media (max-width: 600px) {
-    .container {
-        padding: 15px;
+
+.event-categories {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 1.8rem;
+    border: #333;
+    ;
+}
+
+#blog-container {
+    margin-top: 20px;
+    margin-left: -940px;
+    display: inline-block;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 300%;
+    
+}
+.blog-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #310f80;
+    align-content: center;
+    align-items: center;
+    margin-left: 60px
+}
+
+.blog-card img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
     }
-    input[type="text"], select, button {
-        width: 100%;
-        margin: 10px 0;
-    }
-    .event {
-        padding: 12px;
-    }
-    .event h2 {
-        font-size: 1.2em;
-    }
+
+.blog-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 1rem auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+    background-color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
 }
